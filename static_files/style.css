@@ -1,0 +1,22 @@
+.rectangle {
+    width: 300px;
+    height: 100vh;
+    background-color: #545454;
+    position: fixed;
+    top: 0;
+    left: 0;
+    box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.5);
+}
+body{
+    background-color: #666666;
+}
+footer {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    background-color: #333;
+    color: #7a7a7a;
+    padding: 10px 0;
+    text-align: center;
+}
