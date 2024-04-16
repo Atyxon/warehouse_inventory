@@ -12,7 +12,7 @@
     position: fixed;
     top: 0;
     left: 0;
-    box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.5);
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5);
 }
 .logo {
     display: block;
@@ -25,6 +25,20 @@
     font-size: 14px;
     text-align: center;
 }
+.panel_login {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 180px;
+    height: 130px;
+    background-color: #7a7a7a;
+    border-radius: 10px;
+    margin-bottom: 5px;
+    margin-top: 15px;
+    padding-top: 10px;
+    color: white;
+    box-shadow: 1px 1px 7px rgba(0, 0, 0, 0.5);
+}
 .panel_button {
     display: block;
     margin-left: auto;
@@ -36,12 +50,34 @@
     margin-bottom: 5px;
     margin-top: 5px;
     color: white;
+    box-shadow: 1px 1px 7px rgba(0, 0, 0, 0.5);
+}
+.panel_input {
+    background-color: #919191;
+    width: 150px;
+    height: 25px;
+}
+.panel_input::-webkit-input-placeholder {
+    color: #c2c2c2;
+}
+.panel_button_login {
+    width: 160px;
+}
+.panel_button:hover {
+    background-color: #a44d54;
 }
 .panel_button_logout {
     position: absolute;
     bottom: 0;
     margin-bottom: 50px;
     margin-left: 15px;
+}
+ul {
+    list-style: none;
+    padding: 0px;
+}
+a {
+    text-decoration: none;
 }
 body{
     background-color: #666666;

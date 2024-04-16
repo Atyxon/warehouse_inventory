@@ -11,11 +11,28 @@
 <body>
     <div class="rectangle">
         <img src="{% static 'warehouse_logo_white.png' %}" height="128" width="128" class="logo">
-        <div class="panel_button"><div class="text_center">HOME</div></div>
-        <div class="panel_button"><div class="text_center">PROFILE</div></div>
-        <div class="panel_button"><div class="text_center">SETTINGS</div></div>
-        <div class="panel_button"><div class="text_center">DASHBOARD</div></div>
-        <div class="panel_button panel_button_logout"><div class="text_center">LOGOUT</div></div>
+        <ul>
+            <a href=""><li><div class="panel_button"><div class="text_center">HOME</div></div></li></a>
+            {% if user.is_authenticated %}
+                <a href="/admin"><li><div class="panel_button"><div class="text_center">DASHBOARD</div></div></li></a>
+                <a href="/profile"><li><div class="panel_button"><div class="text_center">PROFILE</div></div></li></a>
+            {% else %}
+                <a href="/register"><li><div class="panel_button"><div class="text_center">REGISTER</div></div></li></a>
+            {% endif %}
+            <a href="/settings"><li><div class="panel_button"><div class="text_center">SETTINGS</div></div></li></a>
+            {% if not user.is_authenticated %}
+                <div class="panel_login">
+                    <form action="" method="post">
+                    {% csrf_token %}
+                        <li><input type="text" class="panel_button panel_input" id="usesrname" name="username" placeholder=" USERNAME" Required></li>
+                        <li><input type="password" class="panel_button panel_input password_input" id="password" name="password" placeholder=" PASSWORD" Required></li>
+                        <li><button type="submit" class="panel_button panel_button_login"><div class="text_center">LOGIN</div></button></li>
+                    </form>
+                </div>
+            {% else %}
+            <a href="/logout"><li><div class="panel_button panel_button_logout"><div class="text_center">LOGOUT</div></div></li></a>
+            {% endif %}
+        </ul>
     </div>
     <footer>Projekt aplikacji do inwentaryzacji magazynu  |  Politechnika Krakowska  |  Artur Migacz & Łukasz Syktus  |  2024</footer>
 </body>
