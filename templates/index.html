@@ -12,14 +12,16 @@
     <div class="rectangle">
         <img src="{% static 'warehouse_logo_white.png' %}" height="128" width="128" class="logo">
         <ul>
-            <a href=""><li><div class="panel_button"><div class="text_center">HOME</div></div></li></a>
+            <a href="/"><li><div class="panel_button"><div class="text_center">HOME</div></div></li></a>
             {% if user.is_authenticated %}
-                <a href="/admin"><li><div class="panel_button"><div class="text_center">DASHBOARD</div></div></li></a>
-                <a href="/profile"><li><div class="panel_button"><div class="text_center">PROFILE</div></div></li></a>
+                {% if user.is_staff  %}
+                    <a href="/admin"><li><div class="panel_button"><div class="text_center">ADMIN PANEL</div></div></li></a>
+                {% endif %}
+                <a href="/page/profile"><li><div class="panel_button"><div class="text_center">PROFILE</div></div></li></a>
             {% else %}
-                <a href="/register"><li><div class="panel_button"><div class="text_center">REGISTER</div></div></li></a>
+                <a href="/page/register"><li><div class="panel_button"><div class="text_center">REGISTER</div></div></li></a>
             {% endif %}
-            <a href="/settings"><li><div class="panel_button"><div class="text_center">SETTINGS</div></div></li></a>
+            <a href="/page/settings"><li><div class="panel_button"><div class="text_center">SETTINGS</div></div></li></a>
             {% if not user.is_authenticated %}
                 <div class="panel_login">
                     <form action="" method="post">
@@ -28,6 +30,9 @@
                         <li><input type="password" class="panel_button panel_input password_input" id="password" name="password" placeholder=" PASSWORD" Required></li>
                         <li><button type="submit" class="panel_button panel_button_login"><div class="text_center">LOGIN</div></button></li>
                     </form>
+                    {% if page == "wrong_passes" %}
+                        WRONG USERNAME OR PASSWORD
+                    {% endif %}
                 </div>
             {% else %}
             <a href="/logout"><li><div class="panel_button panel_button_logout"><div class="text_center">LOGOUT</div></div></li></a>

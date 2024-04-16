@@ -5,7 +5,7 @@
 }
 .rectangle {
     font-family: 'Milker', sans-serif;
-    text-shadow: 2px 2px black;
+    text-shadow: 1px 1px black;
     width: 210px;
     height: 100vh;
     background-color: #545454;
@@ -30,14 +30,16 @@
     margin-left: auto;
     margin-right: auto;
     width: 180px;
-    height: 130px;
+    height: auto;
     background-color: #7a7a7a;
     border-radius: 10px;
     margin-bottom: 5px;
     margin-top: 15px;
     padding-top: 10px;
-    color: white;
+    padding-bottom: 10px;
+    color: red;
     box-shadow: 1px 1px 7px rgba(0, 0, 0, 0.5);
+    text-align: center;
 }
 .panel_button {
     display: block;
