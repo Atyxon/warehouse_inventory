@@ -3,6 +3,7 @@ from django.contrib.auth import authenticate, login, logout
 from django.shortcuts import render, redirect
 from django.http import HttpResponse
 
+from warehouseApp.models import Item
 
 def main_view(request, page='home'):
     if request.method == 'POST':
@@ -15,8 +16,8 @@ def main_view(request, page='home'):
         else:
             messages.error(request, 'Bad passes')
             return redirect('/page/wrong_passes')
-    return render(request, 'index.html', {'page': page})
-
+    items = Item.objects.all()
+    return render(request, 'index.html', {'page': page, 'items' : items})
 
 def logout_view(request):
     logout(request)
