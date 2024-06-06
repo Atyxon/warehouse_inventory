@@ -1,13 +1,15 @@
 from django.contrib import messages
 from django.contrib.auth import authenticate, login, logout
 from django.shortcuts import render, redirect
-from django.http import HttpResponse
+from django.http import HttpResponse, HttpResponseRedirect
 
 from warehouseApp.forms import ItemForm
 from warehouseApp.models import Item, User
 
 
+
 def main_view(request, page='home'):
+    theme = request.COOKIES.get('theme', 'light')
     if request.method == 'POST':
         username = request.POST['username']
         password = request.POST['password']
@@ -20,7 +22,24 @@ def main_view(request, page='home'):
             messages.error(request, 'Bad passes')
             return redirect('/page/wrong_passes')
     items = Item.objects.all()
-    return render(request, 'index.html', {'page': page, 'items' : items})
+    return render(request, 'index.html', {'page': page, 'items': items, 'theme': theme})
+def set_cookie_view(request):
+    cookie_value = request.GET.get('value',
+                                   'bright')  # Retrieve 'value' from GET parameters, default to 'default_value'
+    response = HttpResponseRedirect('/page/settings')
+    response.set_cookie(
+        key='theme',
+        value=cookie_value,
+        max_age=9999999,
+        expires=None,
+        path='/',
+        domain=None,
+        secure=False,
+        httponly=False,
+        samesite='Lax',
+    )
+    return response
+
 
 def logout_view(request):
     logout(request)

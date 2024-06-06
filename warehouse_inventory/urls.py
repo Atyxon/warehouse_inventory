@@ -25,6 +25,7 @@ urlpatterns = [
     path('logout/', views.logout_view, name='logout_view'),
     path('admin/', admin.site.urls),
     path('add/', views.add_item, name='add_item'),
+    path('set-cookie/', views.set_cookie_view, name='set_cookie'),
 ]
 
 urlpatterns += staticfiles_urlpatterns()

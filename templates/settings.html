@@ -1,4 +1,22 @@
 <div class="page_header">SETTINGS</div>
 <div class="settings_container">
-
+    <h3>Change Page Theme</h3>
+    <form>
+        <label>
+            <input type="radio" name="theme" value="light" checked onclick="changeTheme('light')"> Light
+        </label>
+        <br>
+        <label>
+            <input type="radio" name="theme" value="dark" onclick="changeTheme('dark')"> Dark
+        </label>
+        <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+        <input type="submit" class="panel_button" value="SAVE SETTINGS" onclick="submitTheme()">
+        <script>
+            function submitTheme() {
+                const selectedTheme = document.querySelector('input[name="theme"]:checked').value;
+                window.open(`/set-cookie/?value=${selectedTheme}`, '_blank');
+                window.close();
+            }
+        </script>
+    </form>
 </div>
