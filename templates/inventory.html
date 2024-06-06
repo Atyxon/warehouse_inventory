@@ -7,8 +7,9 @@
 <h1>Item List</h1>
 <ul>
     {% for item in items %}
-        <li>{{ item.name }} - {{ item.description }} - {{ item.quantity }} - {{ item.price }} - {{ item.added_date }}</li>
+        <li>{{ item.name }} - {{ item.description }} - {{ item.quantity }} - {{ item.price }} pln</li>
     {% endfor %}
 </ul>
+<a href="{% url 'add_item' %}">Add Item</a>
 </body>
 </html>
