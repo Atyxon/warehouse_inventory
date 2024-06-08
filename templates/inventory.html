@@ -5,11 +5,40 @@
 </head>
 <body>
 <h1>Item List</h1>
-<ul>
+
+<form id="search-form" onsubmit="return false;">
+    <input type="text" id="search-input" placeholder="Search by name">
+</form>
+
+<ul id="item-list">
     {% for item in items %}
         <li>{{ item.name }} - {{ item.description }} - {{ item.quantity }} - {{ item.price }} pln</li>
+    {% empty %}
+        <li>No items found.</li>
     {% endfor %}
 </ul>
 <a href="{% url 'add_item' %}">Add Item</a>
+
 </body>
 </html>
+<script>
+    document.getElementById('search-input').addEventListener('input', function(e) {
+        const query = e.target.value;
+
+        fetch(`/search/?q=${query}`)
+            .then(response => response.json())
+            .then(data => {
+                const itemList = document.getElementById('item-list');
+                itemList.innerHTML = '';
+                if (data.length > 0) {
+                    data.forEach(item => {
+                        const listItem = document.createElement('li');
+                        listItem.textContent = `${item.name} - ${item.description} - ${item.quantity} - ${item.price} pln`;
+                        itemList.appendChild(listItem);
+                    });
+                } else {
+                    itemList.innerHTML = '<li>No items found.</li>';
+                }
+            });
+    });
+</script>

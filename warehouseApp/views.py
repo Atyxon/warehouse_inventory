@@ -1,12 +1,11 @@
 from django.contrib import messages
 from django.contrib.auth import authenticate, login, logout
 from django.shortcuts import render, redirect
-from django.http import HttpResponse, HttpResponseRedirect
+from django.http import HttpResponseRedirect
+from django.http import JsonResponse
 
 from warehouseApp.forms import ItemForm
 from warehouseApp.models import Item, User
-
-
 
 def main_view(request, page='home'):
     theme = request.COOKIES.get('theme', 'light')
@@ -46,8 +45,23 @@ def logout_view(request):
     return redirect('/page/logout')
 
 def item_list(request):
-    items = Item.objects.all()
-    return render(request, 'inventory.html', {'items': items})
+    query = request.GET.get('q')
+    if query:
+        items = Item.objects.filter(name__icontains=query)
+    else:
+        items = Item.objects.all()
+
+    return render(request, 'index.html', {'items': items, 'page': 'home', 'query': query})
+
+def search_items(request):
+    query = request.GET.get('q', '')
+    if query:
+        items = Item.objects.filter(name__icontains=query)
+    else:
+        items = Item.objects.all()
+
+    results = [{'name': item.name, 'description': item.description, 'quantity': item.quantity, 'price': item.price} for item in items]
+    return JsonResponse(results, safe=False)
 
 def add_item(request):
     items = Item.objects.all()

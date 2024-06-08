@@ -20,12 +20,13 @@ from warehouseApp import views
 from django.contrib.staticfiles.urls import staticfiles_urlpatterns
 
 urlpatterns = [
-    path('', views.main_view, name='main_view'),
+    path('', views.item_list, name='item_list'),
     path('page/<str:page>', views.main_view, name='main_view'),
     path('logout/', views.logout_view, name='logout_view'),
     path('admin/', admin.site.urls),
     path('add/', views.add_item, name='add_item'),
     path('set-cookie/', views.set_cookie_view, name='set_cookie'),
+    path('search/', views.search_items, name='search_items'),
 ]
 
 urlpatterns += staticfiles_urlpatterns()
