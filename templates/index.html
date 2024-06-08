@@ -6,7 +6,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Warehouse Inventory</title>
     <link rel="shortcut icon" type="image/png" href="{% static 'warehouse_favico.png' %}" >
-    <link rel="stylesheet" href="{% static 'style.css' %}">
+    {% if theme == 'light' %}
+        <link rel="stylesheet" href="{% static 'style.css' %}">
+    {% else %}
+        <link rel="stylesheet" href="{% static 'style-dark.css' %}">
+    {% endif %}
 </head>
 <body>
     <div class="rectangle">
